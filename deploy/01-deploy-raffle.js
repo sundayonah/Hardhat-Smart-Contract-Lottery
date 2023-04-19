@@ -1,6 +1,8 @@
-const { network } = require("hardhat")
-const { networkConfig, developmentChains } = require("../helper-hardhat-config.js")
-const { verify } = require("../helper-hardhat-config.js")
+const { network, ethers } = require("hardhat")
+
+const { networkConfig, developmentChains } = require("../helper-hardhat-config")
+const { verify } = require("../utils/verify")
+// const { ethers } = require("ethers")
 
 const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("1")
 module.exports = async ({ getNamedAccounts, deployments }) => {
@@ -21,7 +23,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         vrfCoordinatorV2Address = networkConfig[chainId]["vrfCoordinatorV2"]
         subscriptionId = networkConfig[chainId]["subscriptionId"]
     }
-
     const entranceFee = networkConfig[chainId]["entranceFee"]
     const gasLane = networkConfig[chainId]["gasLane"]
     callbackGasLimit = networkConfig[chainId]["callbackGasLimit"]
@@ -39,14 +40,14 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         from: deployer,
         args: args,
         log: true,
-        waitConfirmation: network.config.blockConfirmation || 1,
+        waitConfirmation: network.config.blockConfirmations || 1,
     })
     log("log log log log log")
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Verifying.......")
-        await verify(fundMe.address, args)
+        await verify(raffle.address, args)
     }
-    log("---------------------------------")
+    log("----------------last-----------------")
 }
 
 module.exports.tags = ["all", "raffle"]

@@ -34,12 +34,12 @@ module.exports = {
             chainId: 11155111,
             blockConfirmations: 5,
         },
-        goerli: {
-            url: GOERLI_RPC_URL,
-            accounts: [PRIVATE_KEY],
-            chainId: 5,
-            blockConfirmations: 5,
-        },
+        // goerli: {
+        //     url: GOERLI_RPC_URL,
+        //     accounts: [PRIVATE_KEY],
+        //     chainId: 5,
+        //     blockConfirmations: 5,
+        // },
     },
     solidity: {
         compilers: [
