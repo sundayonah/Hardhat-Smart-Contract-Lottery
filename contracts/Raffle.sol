@@ -10,7 +10,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.s
 /* Errors */
 error Raffle__UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint256 raffleState);
 error Raffle__TransferFailed();
-error Raffle__SendMoreToEnterRaffle();
+error Raffle__NotEnoughETHEntered();
 error Raffle__RaffleNotOpen();
 
 /**@title A sample Raffle Contract
@@ -69,7 +69,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         // require(msg.value >= i_entranceFee, "Not enough value sent");
         // require(s_raffleState == RaffleState.OPEN, "Raffle is not open");
         if (msg.value < i_entranceFee) {
-            revert Raffle__SendMoreToEnterRaffle();
+            revert Raffle__NotEnoughETHEntered();
         }
         if (s_raffleState != RaffleState.OPEN) {
             revert Raffle__RaffleNotOpen();
