@@ -22,7 +22,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         log(
             "Please run `yarn hardhat console --network localhost` to interact with the deployed smart contracts!"
         )
-        log("----------------last-----------------")
+        log("----------------last----------line-------------------")
     }
 }
 module.exports.tags = ["all", "mocks"]
