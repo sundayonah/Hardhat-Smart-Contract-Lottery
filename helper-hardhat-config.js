@@ -2,6 +2,7 @@ const networkConfig = {
     default: {
         name: "hardhat",
         keepersUpdateInterval: "30",
+        //1285
     },
     11155111: {
         name: "sepolia",
